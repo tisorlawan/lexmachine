@@ -2,10 +2,11 @@ package lexmachine
 
 import (
 	"bytes"
+	"encoding/gob"
 	"fmt"
-)
+	"os"
+	"runtime"
 
-import (
 	dfapkg "github.com/timtadh/lexmachine/dfa"
 	"github.com/timtadh/lexmachine/frontend"
 	"github.com/timtadh/lexmachine/inst"
@@ -82,6 +83,104 @@ type Lexer struct {
 	dfaMatches map[int]int // match_idx -> pat_idx
 	program    inst.Slice
 	dfa        *dfapkg.DFA
+}
+
+func (l *Lexer) Save(baseDir string) error {
+	/* Check if directory exsist */
+	os.Mkdir(baseDir, 0755)
+
+	/* Save patterns */
+	patterns := [][]byte{}
+	for _, v := range l.patterns {
+		patterns = append(patterns, v.regex)
+	}
+	err := Save(baseDir+"/patterns.gob", patterns)
+
+	/* Save nfaMatches */
+	err = Save(baseDir+"/nfa_matches.gob", l.nfaMatches)
+
+	/* Save dfaMatches */
+	err = Save(baseDir+"/dfa_matches.gob", l.dfaMatches)
+
+	/* Save program */
+	insts := []inst.Inst{}
+	for _, v := range l.program {
+		insts = append(insts, *v)
+	}
+	err = Save(baseDir+"/insts.gob", insts)
+
+	/* Save dfa */
+	if l.dfa != nil {
+		err = Save(baseDir+"/dfa.gob", *l.dfa)
+	}
+
+	return err
+}
+
+func (l *Lexer) Load(baseDir string) error {
+	/* Load patterns */
+	// raw_patterns := [][]byte{}
+	// err := Load(baseDir+"/patterns.gob", &raw_patterns)
+
+	// for _, raw_pattern := range raw_patterns {
+	// 	fmt.Println(string(raw_pattern))
+	// 	var action Action
+	// 	l.patterns = append(l.patterns, &pattern{
+	// 		raw_pattern,
+	// 		action,
+	// 	})
+	// }
+	// fmt.Println(l.patterns)
+
+	/* Load nfaMatches */
+	err := Load(baseDir+"/nfa_matches.gob", &l.nfaMatches)
+
+	/* Load dfaMatches */
+	err = Load(baseDir+"/dfa_matches.gob", &l.dfaMatches)
+
+	/* Load program */
+	raw_insts := []inst.Inst{}
+	err = Load(baseDir+"/insts.gob", &raw_insts)
+
+	for i, _ := range raw_insts {
+		l.program = append(l.program, &raw_insts[i])
+	}
+
+	/* Load dfa */
+	if _, err := os.Stat(baseDir + "/dfa.gob"); os.IsExist(err) {
+		err = Load(baseDir+"/dfa.gob", &l.dfa)
+	}
+
+	return err
+}
+
+func Save(path string, object interface{}) error {
+	file, err := os.Create(path)
+	if err == nil {
+		encoder := gob.NewEncoder(file)
+		encoder.Encode(object)
+	}
+	file.Close()
+	return err
+}
+
+// Decode Gob file
+func Load(path string, object interface{}) error {
+	file, err := os.Open(path)
+	if err == nil {
+		decoder := gob.NewDecoder(file)
+		err = decoder.Decode(object)
+	}
+	file.Close()
+	return err
+}
+
+func Check(e error) {
+	if e != nil {
+		_, file, line, _ := runtime.Caller(1)
+		fmt.Println(line, "\t", file, "\n", e)
+		os.Exit(1)
+	}
 }
 
 // Scanner tokenizes a byte string based on the patterns provided to the lexer
