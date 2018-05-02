@@ -11,7 +11,7 @@ import (
 )
 
 import (
-	"github.com/timtadh/lexmachine/frontend"
+	"github.com/tisorlawan/lexmachine/frontend"
 )
 
 var log *logpkg.Logger

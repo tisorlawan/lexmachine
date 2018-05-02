@@ -5,7 +5,7 @@ import __yyfmt__ "fmt"
 
 //line sensors.y:3
 import (
-	"github.com/timtadh/lexmachine"
+	"github.com/tisorlawan/lexmachine"
 )
 
 //line sensors.y:11

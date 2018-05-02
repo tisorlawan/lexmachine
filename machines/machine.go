@@ -7,8 +7,8 @@ import (
 )
 
 import (
-	"github.com/timtadh/lexmachine/inst"
-	"github.com/timtadh/lexmachine/queue"
+	"github.com/tisorlawan/lexmachine/inst"
+	"github.com/tisorlawan/lexmachine/queue"
 )
 
 // EmptyMatchError is returned when a pattern would have matched the empty

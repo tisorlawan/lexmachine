@@ -15,15 +15,15 @@
 //
 // To generate the parser (and make this all work) run:
 //
-// go generate github.com/timtadh/lexmachine/examples/golex
+// go generate github.com/tisorlawan/lexmachine/examples/golex
 //
 package main
 
 import (
 	"fmt"
 
-	"github.com/timtadh/lexmachine"
-	"github.com/timtadh/lexmachine/machines"
+	"github.com/tisorlawan/lexmachine"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 type golex struct {

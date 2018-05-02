@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/timtadh/data-structures/test"
-	"github.com/timtadh/lexmachine/machines"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 func TestSimple(x *testing.T) {

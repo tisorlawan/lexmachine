@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/timtadh/getopt"
-	"github.com/timtadh/lexmachine"
+	"github.com/tisorlawan/lexmachine"
 )
 
 func main() {

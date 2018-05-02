@@ -7,10 +7,10 @@ import (
 	"os"
 	"runtime"
 
-	dfapkg "github.com/timtadh/lexmachine/dfa"
-	"github.com/timtadh/lexmachine/frontend"
-	"github.com/timtadh/lexmachine/inst"
-	"github.com/timtadh/lexmachine/machines"
+	dfapkg "github.com/tisorlawan/lexmachine/dfa"
+	"github.com/tisorlawan/lexmachine/frontend"
+	"github.com/tisorlawan/lexmachine/inst"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 // Token is an optional token representation you could use to represent the

@@ -4,8 +4,8 @@ import "testing"
 import "github.com/timtadh/data-structures/test"
 
 import (
-	"github.com/timtadh/lexmachine/inst"
-	"github.com/timtadh/lexmachine/machines"
+	"github.com/tisorlawan/lexmachine/inst"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 func TestParse(x *testing.T) {

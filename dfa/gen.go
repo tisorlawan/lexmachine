@@ -10,8 +10,8 @@ import (
 	"github.com/timtadh/data-structures/linked"
 	"github.com/timtadh/data-structures/set"
 	"github.com/timtadh/data-structures/types"
-	"github.com/timtadh/lexmachine/frontend"
-	"github.com/timtadh/lexmachine/machines"
+	"github.com/tisorlawan/lexmachine/frontend"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 // DFA is a Deterministic Finite-state Automaton

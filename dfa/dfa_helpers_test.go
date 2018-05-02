@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/timtadh/data-structures/test"
-	"github.com/timtadh/lexmachine/frontend"
+	"github.com/tisorlawan/lexmachine/frontend"
 )
 
 func TestLabeledAst(x *testing.T) {

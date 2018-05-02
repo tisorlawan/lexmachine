@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/timtadh/getopt"
-	"github.com/timtadh/lexmachine"
-	"github.com/timtadh/lexmachine/machines"
+	"github.com/tisorlawan/lexmachine"
+	"github.com/tisorlawan/lexmachine/machines"
 )
 
 var tokens = []string{
