@@ -119,21 +119,19 @@ func (l *Lexer) Save(baseDir string) error {
 
 func (l *Lexer) Load(baseDir string) error {
 	/* Load patterns */
-	// raw_patterns := [][]byte{}
-	// err := Load(baseDir+"/patterns.gob", &raw_patterns)
+	raw_patterns := [][]byte{}
+	err := Load(baseDir+"/patterns.gob", &raw_patterns)
 
-	// for _, raw_pattern := range raw_patterns {
-	// 	fmt.Println(string(raw_pattern))
-	// 	var action Action
-	// 	l.patterns = append(l.patterns, &pattern{
-	// 		raw_pattern,
-	// 		action,
-	// 	})
-	// }
-	// fmt.Println(l.patterns)
+	for _, raw_pattern := range raw_patterns {
+		var action Action
+		l.patterns = append(l.patterns, &pattern{
+			raw_pattern,
+			action,
+		})
+	}
 
 	/* Load nfaMatches */
-	err := Load(baseDir+"/nfa_matches.gob", &l.nfaMatches)
+	err = Load(baseDir+"/nfa_matches.gob", &l.nfaMatches)
 
 	/* Load dfaMatches */
 	err = Load(baseDir+"/dfa_matches.gob", &l.dfaMatches)
